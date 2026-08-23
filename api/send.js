@@ -1,8 +1,7 @@
 export default async function handler(req, res) {
-  // Разрешаем запросы с GitHub Pages
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://kora731.github.io"
+    "https://kora-sage-kappa.vercel.app"
   );
 
   res.setHeader(
@@ -15,7 +14,6 @@ export default async function handler(req, res) {
     "Content-Type"
   );
 
-  // Проверка CORS
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -56,7 +54,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          chat_id: "7753950534",
+          chat_id: process.env.CHAT_ID,
           text: message
         })
       }
