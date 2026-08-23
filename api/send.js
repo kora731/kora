@@ -23,27 +23,48 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({
       ok: false,
-      error: "Method not allowed"
+      error: "Method not allowed",
+      method: req.method
     });
   }
 
   try {
-    // Проверяем переменные Vercel
+    console.log("=== /api/send START ===");
+
+    // Проверяем BOT_TOKEN
     if (!process.env.BOT_TOKEN) {
+      console.error("BOT_TOKEN отсутствует");
+
       return res.status(500).json({
         ok: false,
-        error: "BOT_TOKEN is not configured"
+        error: "BOT_TOKEN не найден в Environment Variables"
       });
     }
 
+    console.log("BOT_TOKEN найден");
+
+    // Проверяем CHAT_ID
     if (!process.env.CHAT_ID) {
+      console.error("CHAT_ID отсутствует");
+
       return res.status(500).json({
         ok: false,
-        error: "CHAT_ID is not configured"
+        error: "CHAT_ID не найден в Environment Variables"
       });
     }
 
+    console.log(
+      "CHAT_ID:",
+      process.env.CHAT_ID
+    );
+
+    // Получаем данные
     const data = req.body || {};
+
+    console.log(
+      "Получены данные:",
+      data
+    );
 
     const meetTime =
       data.meetTime || "—";
@@ -60,8 +81,9 @@ export default async function handler(req, res) {
     const waitPercent =
       data.waitPercent ?? "—";
 
-    const message = `
-❤️ Замира ответила на приглашение!
+    // Сообщение
+    const message =
+`❤️ Замира ответила на приглашение!
 
 📅 Дата: 24 августа 2026
 
@@ -75,59 +97,107 @@ export default async function handler(req, res) {
 
 🥰 Ждёт встречу: ${waitPercent}%
 
-🎬 Кино: Человек-паук — 21:50
-`;
+🎬 Кино: Человек-паук — 21:50`;
 
-    const telegramResponse = await fetch(
-      `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-          chat_id: process.env.CHAT_ID,
-          text: message
-        })
-      }
+    console.log(
+      "Отправляем сообщение в Telegram..."
     );
 
-    const telegramResult =
-      await telegramResponse.json();
+    // Telegram API
+    const telegramResponse =
+      await fetch(
+        `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            chat_id: process.env.CHAT_ID,
+            text: message
+          })
+        }
+      );
+
+    console.log(
+      "Telegram HTTP status:",
+      telegramResponse.status
+    );
+
+    // Получаем ответ Telegram как текст
+    const telegramText =
+      await telegramResponse.text();
 
     console.log(
       "Telegram response:",
-      telegramResult
+      telegramText
     );
 
+    let telegramResult;
+
+    try {
+      telegramResult =
+        JSON.parse(telegramText);
+    } catch (parseError) {
+
+      console.error(
+        "Telegram вернул не JSON:",
+        telegramText
+      );
+
+      return res.status(500).json({
+        ok: false,
+        error:
+          "Telegram вернул некорректный ответ",
+        telegramStatus:
+          telegramResponse.status,
+        telegramResponse:
+          telegramText
+      });
+    }
+
+    // Telegram сообщил ошибку
     if (!telegramResult.ok) {
+
+      console.error(
+        "Ошибка Telegram:",
+        telegramResult
+      );
+
       return res.status(500).json({
         ok: false,
         error:
           telegramResult.description ||
-          "Telegram API error"
+          "Telegram API error",
+
+        telegramErrorCode:
+          telegramResult.error_code || null
       });
     }
 
+    console.log(
+      "=== /api/send SUCCESS ==="
+    );
+
     return res.status(200).json({
-      ok: true,
-      message: "Successfully sent to Telegram"
+      ok: true
     });
 
   } catch (error) {
 
     console.error(
-      "API error:",
-      error
+      "=== /api/send ERROR ==="
     );
+
+    console.error(error);
 
     return res.status(500).json({
       ok: false,
       error:
-        error.message ||
-        "Internal server error"
+        error?.message ||
+        String(error)
     });
   }
 }
