@@ -6,25 +6,6 @@
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<script>
-    const tg = window.Telegram.WebApp;
-
-    // Разворачиваем Mini App на весь экран
-    tg.expand();
-
-    // Получаем данные пользователя Telegram
-    const user = tg.initDataUnsafe?.user;
-
-    if (user) {
-        console.log("Telegram ID:", user.id);
-        console.log("Имя:", user.first_name);
-        console.log("Фамилия:", user.last_name);
-        console.log("Username:", user.username);
-    } else {
-        console.log("Пользователь Telegram не найден");
-    }
-</script>
-  
 <title>Для Замиры ❤️</title>
 
 <style>
@@ -51,10 +32,6 @@ body {
   background:
     linear-gradient(135deg, #ff5f8f 0%, #ff1744 100%);
 }
-
-/* =========================
-   ФОН
-========================= */
 
 .bg {
   position: fixed;
@@ -109,10 +86,6 @@ body {
   bottom: 5%;
 }
 
-/* =========================
-   КАРТОЧКА
-========================= */
-
 .card {
   position: relative;
   z-index: 10;
@@ -145,10 +118,6 @@ body {
   display: none;
 }
 
-/* =========================
-   ЭКРАНЫ
-========================= */
-
 .screen {
   width: 100%;
   animation: screenAppear .5s ease;
@@ -158,34 +127,25 @@ body {
   display: none !important;
 }
 
-/* =========================
-   ТИПОГРАФИКА
-========================= */
-
 h1 {
   margin: 10px 0 14px;
-
   font-size: clamp(38px, 9vw, 62px);
   line-height: 1.05;
 }
 
 h2 {
   margin: 12px 0 16px;
-
   font-size: clamp(28px, 7vw, 42px);
 }
 
 h3 {
   margin: 12px 0;
-
   font-size: 24px;
 }
 
 p {
   margin: 0 auto 26px;
-
   max-width: 450px;
-
   font-size: 18px;
   line-height: 1.6;
 }
@@ -194,10 +154,6 @@ p {
   font-size: 14px;
   opacity: .78;
 }
-
-/* =========================
-   ГЛАВНОЕ СЕРДЦЕ
-========================= */
 
 .main-heart {
   font-size: 76px;
@@ -210,10 +166,6 @@ p {
       0 10px 18px rgba(100,0,30,.25)
     );
 }
-
-/* =========================
-   КНОПКИ
-========================= */
 
 .buttons {
   display: flex;
@@ -273,10 +225,6 @@ button:active {
   box-shadow:
     0 8px 20px rgba(100,0,30,.12);
 }
-
-/* =========================
-   КАРТОЧКА КИНО
-========================= */
 
 .movie-ticket {
   position: relative;
@@ -366,39 +314,6 @@ button:active {
   font-size: 14px;
 }
 
-/* =========================
-   ВЫБОР ВАРИАНТА
-========================= */
-
-.big-choice {
-  width: 100%;
-  max-width: 380px;
-
-  margin: 9px auto;
-
-  display: block;
-
-  padding: 18px 22px;
-
-  color: #d91648;
-
-  background: rgba(255,255,255,.94);
-
-  box-shadow:
-    0 8px 22px rgba(100,0,30,.15);
-}
-
-.big-choice:hover {
-  background: #fff;
-
-  box-shadow:
-    0 14px 30px rgba(100,0,30,.24);
-}
-
-/* =========================
-   ЕДА
-========================= */
-
 .food-grid {
   display: grid;
 
@@ -437,10 +352,6 @@ button:active {
   transform: translateY(-5px);
 }
 
-/* =========================
-   ОПЛАТА
-========================= */
-
 .payment-wrap {
   margin-top: 26px;
 }
@@ -448,10 +359,6 @@ button:active {
 .payment-button {
   min-width: 175px;
 }
-
-/* =========================
-   ФИНАЛ
-========================= */
 
 .final-plan {
   max-width: 420px;
@@ -495,10 +402,6 @@ button:active {
   font-size: 18px;
   line-height: 1.6;
 }
-
-/* =========================
-   ПРОЦЕНТ
-========================= */
 
 .percent-box {
   margin: 5px auto 20px;
@@ -594,13 +497,11 @@ button:active {
 
 #waitSlider::-webkit-slider-runnable-track {
   height: 8px;
-
   background: transparent;
 }
 
 #waitSlider::-moz-range-track {
   height: 8px;
-
   background: transparent;
 }
 
@@ -658,10 +559,6 @@ button:active {
   opacity: .8;
 }
 
-/* =========================
-   ПАДАЮЩИЕ СЕРДЦА
-========================= */
-
 .falling-heart {
   position: fixed;
 
@@ -673,10 +570,6 @@ button:active {
 
   animation: fall linear forwards;
 }
-
-/* =========================
-   СЕРДЦА ПРИ КЛИКЕ
-========================= */
 
 .click-heart {
   position: fixed;
@@ -691,10 +584,6 @@ button:active {
     ease-out
     forwards;
 }
-
-/* =========================
-   КОНФЕТТИ
-========================= */
 
 .confetti {
   position: fixed;
@@ -715,10 +604,6 @@ button:active {
     linear
     forwards;
 }
-
-/* =========================
-   АНИМАЦИИ
-========================= */
 
 @keyframes pulse {
   50% {
@@ -806,10 +691,6 @@ button:active {
   }
 }
 
-/* =========================
-   МОБИЛЬНЫЙ
-========================= */
-
 @media (max-width: 520px) {
 
   .card {
@@ -876,486 +757,431 @@ button:active {
 
 <main class="card">
 
-  <!-- ==================================================
-       ЭКРАН 1
-  ================================================== -->
+<section id="screen1" class="screen">
 
-  <section id="screen1" class="screen">
+<div class="main-heart">❤️</div>
 
-    <div class="main-heart">❤️</div>
+<h1>Замира</h1>
 
-    <h1>Замира</h1>
+<p>
+Я хочу украсть у тебя немного времени
+<b>24 августа</b>.
+<br><br>
 
-    <p>
-      Я хочу украсть у тебя немного времени
-      <b>24 августа</b>.
-      <br><br>
+Обещаю — будет интересно,
+вкусно и немного романтично 😌
+<br><br>
 
-      Обещаю — будет интересно,
-      вкусно и немного романтично 😌
-      <br><br>
+Я уже приготовил для нас
+кое-что особенное…
+<br><br>
 
-      Я уже приготовил для нас
-      кое-что особенное…
-      <br><br>
+<b>Пойдёшь со мной? ❤️</b>
+</p>
 
-      <b>Пойдёшь со мной? ❤️</b>
-    </p>
+<div class="buttons">
 
-    <div class="buttons">
+<button
+class="primary"
+onclick="startInvitation(this)"
+>
+Да, конечно ❤️
+</button>
 
-      <button
-        class="primary"
-        onclick="startInvitation(this)"
-      >
-        Да, конечно ❤️
-      </button>
+<button
+class="secondary"
+id="noBtn"
+>
+Нет 🙈
+</button>
 
-      <button
-        class="secondary"
-        id="noBtn"
-      >
-        Нет 🙈
-      </button>
+</div>
 
-    </div>
+</section>
 
-  </section>
 
+<section id="screen2" class="screen hidden">
 
-  <!-- ==================================================
-       ЭКРАН 2
-  ================================================== -->
+<div class="main-heart">😍</div>
 
-  <section
-    id="screen2"
-    class="screen hidden"
-  >
+<h2>Я так и знал!</h2>
 
-    <div class="main-heart">😍</div>
+<p>
+Тогда расскажу тебе,
+что я уже успел подготовить...
+</p>
 
-    <h2>Я так и знал!</h2>
+<div class="movie-ticket">
 
-    <p>
-      Тогда расскажу тебе,
-      что я уже успел подготовить...
-    </p>
+<div class="movie-icon">🎬</div>
 
-    <div class="movie-ticket">
+<div class="ticket-label">
+Наш маленький план
+</div>
 
-      <div class="movie-icon">🎬</div>
+<div class="movie-name">
+Человек-паук 🕷️
+</div>
 
-      <div class="ticket-label">
-        Наш маленький план
-      </div>
+<div class="movie-time">
+21:50
+</div>
 
-      <div class="movie-name">
-        Человек-паук 🕷️
-      </div>
+<div class="ticket-date">
+24 августа 2026
+<br><br>
+🎟️ Билеты уже взяты ❤️
+</div>
 
-      <div class="movie-time">
-        21:50
-      </div>
+</div>
 
-      <div class="ticket-date">
-        24 августа 2026
-        <br><br>
-        🎟️ Билеты уже взяты ❤️
-      </div>
+<p>
+Но до кино у нас ещё есть время 😌
+<br><br>
 
-    </div>
+Поэтому выбирай,
+чем займёмся до фильма:
+</p>
 
-    <p>
-      Но до кино у нас ещё есть время 😌
-      <br><br>
+<div class="buttons">
 
-      Поэтому выбирай,
-      чем займёмся до фильма:
-    </p>
+<button
+class="primary"
+onclick="chooseWalk(this)"
+>
+🎢 Погулять
+</button>
 
-    <div class="buttons">
+<button
+class="primary"
+onclick="chooseFood(this)"
+>
+🍜 Покушать
+</button>
 
-      <button
-        class="primary"
-        onclick="chooseWalk(this)"
-      >
-        🎢 Погулять
-      </button>
+</div>
 
-      <button
-        class="primary"
-        onclick="chooseFood(this)"
-      >
-        🍜 Покушать
-      </button>
+</section>
 
-    </div>
 
-  </section>
+<section id="screen3" class="screen hidden">
 
+<div class="main-heart">🎢</div>
 
-  <!-- ==================================================
-       ЭКРАН 3 — ПРОГУЛКА
-  ================================================== -->
-
-  <section
-    id="screen3"
-    class="screen hidden"
-  >
-
-    <div class="main-heart">🎢</div>
-
-    <h2>Отличный выбор!</h2>
-
-    <p>
-      Тогда предлагаю встретиться
-      <b>в 20:00</b> ❤️
-      <br><br>
-
-      А дальше —
-      <b>парк аттракционов</b> 🎡
-      <br><br>
+<h2>Отличный выбор!</h2>
 
-      Немного погуляем,
-      покатаемся и хорошо проведём
-      время перед кино 😌
-    </p>
+<p>
+Тогда предлагаю встретиться
+<b>в 20:00</b> ❤️
+<br><br>
 
-    <div class="final-plan">
-
-      <div class="plan-row">
-        <span>📅 Дата</span>
-        <strong>24 августа</strong>
-      </div>
+А дальше —
+<b>парк аттракционов</b> 🎡
+<br><br>
 
-      <div class="plan-row">
-        <span>🕗 Встречаемся</span>
-        <strong>20:00</strong>
-      </div>
+Немного погуляем,
+покатаемся и хорошо проведём
+время перед кино 😌
+</p>
 
-      <div class="plan-row">
-        <span>🎢 План</span>
-        <strong>Парк аттракционов</strong>
-      </div>
-
-      <div class="plan-row">
-        <span>🎬 Потом</span>
-        <strong>Человек-паук — 21:50</strong>
-      </div>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="confirmWalk(this)"
-    >
-      Договорились ❤️
-    </button>
-
-  </section>
-
-
-  <!-- ==================================================
-       ЭКРАН 4 — ВЫБОР ЕДЫ
-  ================================================== -->
-
-  <section
-    id="screen4"
-    class="screen hidden"
-  >
-
-    <div class="main-heart">🍜</div>
-
-    <h2>Тогда выбирай 😌</h2>
-
-    <p>
-      Встречаемся <b>в 21:00</b>.
-      <br><br>
-
-      Что будем кушать перед кино?
-    </p>
-
-    <div class="food-grid">
-
-      <button
-        class="food-button"
-        onclick="chooseFoodItem('Суши 🍣', this)"
-      >
-        <span>🍣</span>
-        Суши
-      </button>
-
-      <button
-        class="food-button"
-        onclick="chooseFoodItem('Пицца 🍕', this)"
-      >
-        <span>🍕</span>
-        Пицца
-      </button>
-
-      <button
-        class="food-button"
-        onclick="chooseFoodItem('Бургеры 🍔', this)"
-      >
-        <span>🍔</span>
-        Бургеры
-      </button>
-
-      <button
-        class="food-button"
-        onclick="chooseFoodItem('Раменная 🍜', this)"
-      >
-        <span>🍜</span>
-        Раменная
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==================================================
-       ЭКРАН 5 — ОПЛАТА
-  ================================================== -->
-
-  <section
-    id="screen5"
-    class="screen hidden"
-  >
-
-    <div class="main-heart">💳</div>
-
-    <h2>И последний вопрос...</h2>
-
-    <p>
-      Кто сегодня платит? 😌
-    </p>
-
-    <div
-      style="
-        margin:20px auto;
-        padding:15px;
-        border-radius:18px;
-        background:rgba(255,255,255,.12);
-        border:1px solid rgba(255,255,255,.25);
-      "
-    >
-
-      <div class="small-text">
-        Твой выбор
-      </div>
-
-      <div
-        id="foodSelected"
-        style="
-          margin-top:6px;
-          font-size:22px;
-          font-weight:800;
-        "
-      >
-        —
-      </div>
-
-    </div>
-
-    <div class="buttons payment-wrap">
-
-      <button
-        class="primary payment-button"
-        id="ramazanBtn"
-      >
-        💳 Рамазан
-      </button>
-
-      <button
-        class="primary payment-button"
-        onclick="payByZamira(this)"
-      >
-        👑 Замира
-      </button>
-
-    </div>
-
-    <p
-      id="paymentHint"
-      class="small-text"
-      style="margin-top:22px;"
-    >
-      Один из вариантов почему-то
-      очень хочет убежать 😏
-    </p>
-
-  </section>
-
-
-  <!-- ==================================================
-       ЭКРАН 6 — ВОПРОС ПРО ОЖИДАНИЕ
-  ================================================== -->
-
-  <section
-    id="screen6"
-    class="screen hidden"
-  >
-
-    <div class="main-heart">🥰</div>
-
-    <h2>У меня последний вопрос...</h2>
-
-    <p>
-      <b>
-        Насколько сильно ты ждёшь
-        нашу встречу?
-      </b>
-      ❤️
-    </p>
-
-    <div class="percent-box">
-      <span id="waitPercent">50%</span>
-    </div>
-
-    <div class="slider-wrap">
-
-      <div class="slider-track">
-
-        <div class="slider-background"></div>
-
-        <div
-          class="slider-fill"
-          id="sliderFill"
-        ></div>
-
-        <div class="heart-marks">
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-          <span>❤️</span>
-        </div>
-
-        <input
-          type="range"
-          id="waitSlider"
-          min="0"
-          max="100"
-          value="50"
-        >
-
-      </div>
-
-      <div class="slider-labels">
-        <span>0% 😏</span>
-        <span>50% 🥰</span>
-        <span>100% ❤️</span>
-      </div>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="finishInvitation(this)"
-    >
-      Всё, ответила ❤️
-    </button>
-
-  </section>
-
-
-  <!-- ==================================================
-       ЭКРАН 7 — ФИНАЛ
-  ================================================== -->
-
-  <section
-    id="screen7"
-    class="screen hidden"
-  >
-
-    <div class="main-heart">💖</div>
-
-    <h2>Ну всё...</h2>
-
-    <p id="finalMessage">
-      —
-    </p>
-
-    <div class="final-plan">
-
-      <div class="plan-row">
-        <span>📅 Дата</span>
-        <strong>24 августа 2026</strong>
-      </div>
-
-      <div
-        class="plan-row"
-        id="finalMeetRow"
-      >
-        <span>🕘 Встречаемся</span>
-        <strong id="finalMeetTime">—</strong>
-      </div>
-
-      <div
-        class="plan-row"
-        id="finalChoiceRow"
-      >
-        <span>❤️ Наш план</span>
-        <strong id="finalChoice">—</strong>
-      </div>
-
-      <div
-        class="plan-row"
-        id="finalPaymentRow"
-      >
-        <span>💳 Платит</span>
-        <strong id="finalPayment">—</strong>
-      </div>
-
-      <div class="plan-row">
-        <span>🎬 Кино</span>
-        <strong>Человек-паук — 21:50</strong>
-      </div>
-
-    </div>
-
-    <p id="finalWaitText">
-      —
-    </p>
-
-    <div class="movie-ticket">
-
-      <div class="movie-icon">🕷️</div>
-
-      <div class="ticket-label">
-        Наше свидание
-      </div>
-
-      <div class="movie-name">
-        Человек-паук
-      </div>
-
-      <div class="movie-time">
-        21:50
-      </div>
-
-      <div class="ticket-date">
-        24 августа 2026
-        <br><br>
-        До встречи, Замира ❤️
-      </div>
-
-    </div>
-
-    <div class="signature">
-      С любовью,
-      <br>
-      <b>Рамазан ❤️</b>
-    </div>
-
-  </section>
+<div class="final-plan">
+
+<div class="plan-row">
+<span>📅 Дата</span>
+<strong>24 августа</strong>
+</div>
+
+<div class="plan-row">
+<span>🕗 Встречаемся</span>
+<strong>20:00</strong>
+</div>
+
+<div class="plan-row">
+<span>🎢 План</span>
+<strong>Парк аттракционов</strong>
+</div>
+
+<div class="plan-row">
+<span>🎬 Потом</span>
+<strong>Человек-паук — 21:50</strong>
+</div>
+
+</div>
+
+<button
+class="primary"
+onclick="confirmWalk(this)"
+>
+Договорились ❤️
+</button>
+
+</section>
+
+
+<section id="screen4" class="screen hidden">
+
+<div class="main-heart">🍜</div>
+
+<h2>Тогда выбирай 😌</h2>
+
+<p>
+Встречаемся <b>в 21:00</b>.
+<br><br>
+
+Что будем кушать перед кино?
+</p>
+
+<div class="food-grid">
+
+<button
+class="food-button"
+onclick="chooseFoodItem('Суши 🍣', this)"
+>
+<span>🍣</span>
+Суши
+</button>
+
+<button
+class="food-button"
+onclick="chooseFoodItem('Пицца 🍕', this)"
+>
+<span>🍕</span>
+Пицца
+</button>
+
+<button
+class="food-button"
+onclick="chooseFoodItem('Бургеры 🍔', this)"
+>
+<span>🍔</span>
+Бургеры
+</button>
+
+<button
+class="food-button"
+onclick="chooseFoodItem('Раменная 🍜', this)"
+>
+<span>🍜</span>
+Раменная
+</button>
+
+</div>
+
+</section>
+
+
+<section id="screen5" class="screen hidden">
+
+<div class="main-heart">💳</div>
+
+<h2>И последний вопрос...</h2>
+
+<p>
+Кто сегодня платит? 😌
+</p>
+
+<div
+style="
+margin:20px auto;
+padding:15px;
+border-radius:18px;
+background:rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.25);
+"
+>
+
+<div class="small-text">
+Твой выбор
+</div>
+
+<div
+id="foodSelected"
+style="
+margin-top:6px;
+font-size:22px;
+font-weight:800;
+"
+>
+—
+</div>
+
+</div>
+
+<div class="buttons payment-wrap">
+
+<button
+class="primary payment-button"
+id="ramazanBtn"
+>
+💳 Рамазан
+</button>
+
+<button
+class="primary payment-button"
+onclick="payByZamira(this)"
+>
+👑 Замира
+</button>
+
+</div>
+
+<p
+id="paymentHint"
+class="small-text"
+style="margin-top:22px;"
+>
+Один из вариантов почему-то
+очень хочет убежать 😏
+</p>
+
+</section>
+
+
+<section id="screen6" class="screen hidden">
+
+<div class="main-heart">🥰</div>
+
+<h2>У меня последний вопрос...</h2>
+
+<p>
+<b>
+Насколько сильно ты ждёшь
+нашу встречу?
+</b>
+❤️
+</p>
+
+<div class="percent-box">
+<span id="waitPercent">50%</span>
+</div>
+
+<div class="slider-wrap">
+
+<div class="slider-track">
+
+<div class="slider-background"></div>
+
+<div
+class="slider-fill"
+id="sliderFill"
+></div>
+
+<div class="heart-marks">
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+<span>❤️</span>
+</div>
+
+<input
+type="range"
+id="waitSlider"
+min="0"
+max="100"
+value="50"
+>
+
+</div>
+
+<div class="slider-labels">
+<span>0% 😏</span>
+<span>50% 🥰</span>
+<span>100% ❤️</span>
+</div>
+
+</div>
+
+<button
+class="primary"
+onclick="finishInvitation(this)"
+>
+Всё, ответила ❤️
+</button>
+
+</section>
+
+
+<section id="screen7" class="screen hidden">
+
+<div class="main-heart">💖</div>
+
+<h2>Ну всё...</h2>
+
+<p id="finalMessage">
+—
+</p>
+
+<div class="final-plan">
+
+<div class="plan-row">
+<span>📅 Дата</span>
+<strong>24 августа 2026</strong>
+</div>
+
+<div class="plan-row">
+<span>🕘 Встречаемся</span>
+<strong id="finalMeetTime">—</strong>
+</div>
+
+<div class="plan-row">
+<span>❤️ Наш план</span>
+<strong id="finalChoice">—</strong>
+</div>
+
+<div class="plan-row">
+<span>💳 Платит</span>
+<strong id="finalPayment">—</strong>
+</div>
+
+<div class="plan-row">
+<span>🎬 Кино</span>
+<strong>Человек-паук — 21:50</strong>
+</div>
+
+</div>
+
+<p id="finalWaitText">
+—
+</p>
+
+<div class="movie-ticket">
+
+<div class="movie-icon">🕷️</div>
+
+<div class="ticket-label">
+Наше свидание
+</div>
+
+<div class="movie-name">
+Человек-паук
+</div>
+
+<div class="movie-time">
+21:50
+</div>
+
+<div class="ticket-date">
+24 августа 2026
+<br><br>
+До встречи, Замира ❤️
+</div>
+
+</div>
+
+<div class="signature">
+С любовью,
+<br>
+<b>Рамазан ❤️</b>
+</div>
+
+</section>
 
 </main>
 
@@ -1363,14 +1189,34 @@ button:active {
 <script>
 
 /* =====================================================
+   TELEGRAM MINI APP
+===================================================== */
+
+const tg = window.Telegram?.WebApp;
+
+if (tg) {
+  tg.ready();
+  tg.expand();
+
+  const user = tg.initDataUnsafe?.user;
+
+  if (user) {
+    console.log("Telegram ID:", user.id);
+    console.log("Имя:", user.first_name);
+    console.log("Фамилия:", user.last_name || "");
+    console.log("Username:", user.username || "");
+  }
+}
+
+
+/* =====================================================
    ДАННЫЕ
 ===================================================== */
 
 let selectedRoute = "";
-
 let selectedFood = "";
-
 let selectedPayment = "";
+let selectedChoice = "";
 
 let paymentEscapeCount = 0;
 
@@ -1388,9 +1234,9 @@ function goToScreen(number) {
     });
 
   const next =
-    document.getElementById(
-      "screen" + number
-    );
+    document.getElementById("screen" + number);
+
+  if (!next) return;
 
   next.classList.remove("hidden");
 
@@ -1400,7 +1246,6 @@ function goToScreen(number) {
     next.style.animation =
       "screenAppear .5s ease";
   }, 10);
-
 }
 
 
@@ -1424,11 +1269,7 @@ function buttonHearts(button) {
     "💓"
   ];
 
-  for (
-    let i = 0;
-    i < 14;
-    i++
-  ) {
+  for (let i = 0; i < 14; i++) {
 
     const heart =
       document.createElement("div");
@@ -1439,8 +1280,7 @@ function buttonHearts(button) {
     heart.textContent =
       hearts[
         Math.floor(
-          Math.random() *
-          hearts.length
+          Math.random() * hearts.length
         )
       ];
 
@@ -1484,9 +1324,7 @@ function buttonHearts(button) {
       () => heart.remove(),
       1400
     );
-
   }
-
 }
 
 
@@ -1502,12 +1340,11 @@ function startInvitation(button) {
     () => goToScreen(2),
     250
   );
-
 }
 
 
 /* =====================================================
-   КНОПКА "НЕТ"
+   КНОПКА НЕТ
 ===================================================== */
 
 const noBtn =
@@ -1555,56 +1392,35 @@ function moveNoButton() {
       maxY - padding
     );
 
-  noBtn.style.position =
-    "fixed";
-
-  noBtn.style.left =
-    x + "px";
-
-  noBtn.style.top =
-    y + "px";
-
-  noBtn.style.zIndex =
-    "9999";
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.zIndex = "9999";
 
   buttonHearts(noBtn);
-
 }
-
-
-/* Компьютер */
 
 noBtn.addEventListener(
   "mouseenter",
   moveNoButton
 );
 
-
-/* Телефон */
-
 noBtn.addEventListener(
   "touchstart",
   function(event) {
 
     event.preventDefault();
-
     moveNoButton();
 
   },
-  {
-    passive: false
-  }
+  { passive: false }
 );
-
-
-/* Клик */
 
 noBtn.addEventListener(
   "click",
   function(event) {
 
     event.preventDefault();
-
     moveNoButton();
 
   }
@@ -1617,8 +1433,7 @@ noBtn.addEventListener(
 
 function chooseWalk(button) {
 
-  selectedRoute =
-    "Погулять";
+  selectedRoute = "Погулять";
 
   buttonHearts(button);
 
@@ -1626,12 +1441,12 @@ function chooseWalk(button) {
     () => goToScreen(3),
     250
   );
-
 }
 
 function confirmWalk(button) {
 
-  selectedChoice = "Парк аттракционов 🎢";
+  selectedChoice =
+    "Парк аттракционов 🎢";
 
   selectedPayment =
     "Рамазан ❤️";
@@ -1642,7 +1457,6 @@ function confirmWalk(button) {
     () => goToScreen(6),
     300
   );
-
 }
 
 
@@ -1652,8 +1466,7 @@ function confirmWalk(button) {
 
 function chooseFood(button) {
 
-  selectedRoute =
-    "Покушать";
+  selectedRoute = "Покушать";
 
   buttonHearts(button);
 
@@ -1661,21 +1474,15 @@ function chooseFood(button) {
     () => goToScreen(4),
     250
   );
-
 }
 
-
-function chooseFoodItem(
-  food,
-  button
-) {
+function chooseFoodItem(food, button) {
 
   selectedFood = food;
 
   document.getElementById(
     "foodSelected"
-  ).textContent =
-    food;
+  ).textContent = food;
 
   buttonHearts(button);
 
@@ -1683,42 +1490,27 @@ function chooseFoodItem(
     () => goToScreen(5),
     300
   );
-
 }
 
 
 /* =====================================================
    КНОПКА РАМАЗАН
-   УБЕГАЕТ ДВА РАЗА,
-   НА ТРЕТИЙ ПОЗВОЛЯЕТ ВЫБРАТЬ
 ===================================================== */
 
 const ramazanBtn =
-  document.getElementById(
-    "ramazanBtn"
-  );
-
+  document.getElementById("ramazanBtn");
 
 function moveRamazanButton() {
 
   paymentEscapeCount++;
 
-  buttonHearts(
-    ramazanBtn
-  );
+  buttonHearts(ramazanBtn);
 
-  if (
-    paymentEscapeCount >= 3
-  ) {
+  if (paymentEscapeCount >= 3) {
 
-    ramazanBtn.style.position =
-      "relative";
-
-    ramazanBtn.style.left =
-      "";
-
-    ramazanBtn.style.top =
-      "";
+    ramazanBtn.style.position = "relative";
+    ramazanBtn.style.left = "";
+    ramazanBtn.style.top = "";
 
     ramazanBtn.textContent =
       "💳 Рамазан ❤️";
@@ -1729,18 +1521,15 @@ function moveRamazanButton() {
       "Ну всё, поймала 😌";
 
     return;
-
   }
 
   const padding = 15;
 
   const width =
-    ramazanBtn.offsetWidth ||
-    170;
+    ramazanBtn.offsetWidth || 170;
 
   const height =
-    ramazanBtn.offsetHeight ||
-    55;
+    ramazanBtn.offsetHeight || 55;
 
   const maxX =
     Math.max(
@@ -1758,8 +1547,7 @@ function moveRamazanButton() {
       padding
     );
 
-  ramazanBtn.style.position =
-    "fixed";
+  ramazanBtn.style.position = "fixed";
 
   ramazanBtn.style.left =
     (
@@ -1781,13 +1569,9 @@ function moveRamazanButton() {
       )
     ) + "px";
 
-  ramazanBtn.style.zIndex =
-    "9999";
+  ramazanBtn.style.zIndex = "9999";
 
-
-  if (
-    paymentEscapeCount === 1
-  ) {
+  if (paymentEscapeCount === 1) {
 
     document.getElementById(
       "paymentHint"
@@ -1801,74 +1585,41 @@ function moveRamazanButton() {
     ).textContent =
       "Она снова убежала 😭";
   }
-
 }
-
-
-/* Наведение */
 
 ramazanBtn.addEventListener(
   "mouseenter",
   function() {
 
-    if (
-      paymentEscapeCount < 3
-    ) {
-
+    if (paymentEscapeCount < 3) {
       moveRamazanButton();
-
     }
 
   }
 );
-
-
-/* Телефон */
 
 ramazanBtn.addEventListener(
   "touchstart",
   function(event) {
 
-    if (
-      paymentEscapeCount < 3
-    ) {
+    if (paymentEscapeCount < 3) {
 
       event.preventDefault();
-
       moveRamazanButton();
 
     }
 
   },
-  {
-    passive: false
-  }
+  { passive: false }
 );
-
-
-/* Клик */
 
 ramazanBtn.addEventListener(
   "click",
   function(event) {
 
-    if (
-      paymentEscapeCount < 2
-    ) {
+    if (paymentEscapeCount < 3) {
 
       event.preventDefault();
-
-      moveRamazanButton();
-
-      return;
-    }
-
-    if (
-      paymentEscapeCount === 2
-    ) {
-
-      event.preventDefault();
-
       moveRamazanButton();
 
       return;
@@ -1877,9 +1628,7 @@ ramazanBtn.addEventListener(
     selectedPayment =
       "Рамазан ❤️";
 
-    buttonHearts(
-      ramazanBtn
-    );
+    buttonHearts(ramazanBtn);
 
     document.getElementById(
       "paymentHint"
@@ -1890,7 +1639,6 @@ ramazanBtn.addEventListener(
       () => goToScreen(6),
       300
     );
-
   }
 );
 
@@ -1915,7 +1663,6 @@ function payByZamira(button) {
     () => goToScreen(6),
     350
   );
-
 }
 
 
@@ -1924,36 +1671,25 @@ function payByZamira(button) {
 ===================================================== */
 
 const waitSlider =
-  document.getElementById(
-    "waitSlider"
-  );
+  document.getElementById("waitSlider");
 
 const waitPercent =
-  document.getElementById(
-    "waitPercent"
-  );
+  document.getElementById("waitPercent");
 
 const sliderFill =
-  document.getElementById(
-    "sliderFill"
-  );
-
+  document.getElementById("sliderFill");
 
 function updateWaitSlider() {
 
   const value =
-    Number(
-      waitSlider.value
-    );
+    Number(waitSlider.value);
 
   waitPercent.textContent =
     value + "%";
 
   sliderFill.style.width =
     value + "%";
-
 }
-
 
 waitSlider.addEventListener(
   "input",
@@ -1967,23 +1703,17 @@ updateWaitSlider();
    ФИНАЛЬНЫЙ ВОПРОС
 ===================================================== */
 
-function finishInvitation(
-  button
-) {
+async function finishInvitation(button) {
 
   const value =
-    Number(
-      waitSlider.value
-    );
+    Number(waitSlider.value);
 
   buttonHearts(button);
 
   let finalText = "";
   let waitText = "";
 
-  if (
-    value >= 90
-  ) {
+  if (value >= 90) {
 
     finalText =
       `${value}%?! 😳❤️
@@ -1997,9 +1727,7 @@ function finishInvitation(
     waitText =
       "Кажется, теперь я буду ждать нашу встречу ещё сильнее тебя 😏❤️";
 
-  } else if (
-    value >= 60
-  ) {
+  } else if (value >= 60) {
 
     finalText =
       `${value}% — уже неплохо 😌❤️
@@ -2010,9 +1738,7 @@ function finishInvitation(
     waitText =
       "24 августа проверим, насколько честным был этот процент 😏";
 
-  } else if (
-    value >= 30
-  ) {
+  } else if (value >= 30) {
 
     finalText =
       `${value}%? 😏
@@ -2039,54 +1765,45 @@ function finishInvitation(
   }
 
 
-  /* Если прогулка */
+  /* ================================================
+     ФИНАЛЬНЫЕ ДАННЫЕ
+  ================================================= */
 
-  if (
-    selectedRoute ===
-    "Погулять"
-  ) {
+  let meetTime = "";
+
+  if (selectedRoute === "Погулять") {
 
     selectedChoice =
       "Парк аттракционов 🎢";
 
-    document.getElementById(
-      "finalMeetTime"
-    ).textContent =
-      "20:00";
-
-    document.getElementById(
-      "finalChoice"
-    ).textContent =
-      "Парк аттракционов 🎢";
-
-    document.getElementById(
-      "finalPayment"
-    ).textContent =
+    selectedPayment =
       "Рамазан ❤️";
 
+    meetTime = "20:00";
+
+  } else {
+
+    meetTime = "21:00";
+
+    selectedChoice =
+      selectedFood || "—";
   }
 
-  /* Если еда */
 
-  else {
+  document.getElementById(
+    "finalMeetTime"
+  ).textContent =
+    meetTime;
 
-    document.getElementById(
-      "finalMeetTime"
-    ).textContent =
-      "21:00";
+  document.getElementById(
+    "finalChoice"
+  ).textContent =
+    selectedChoice;
 
-    document.getElementById(
-      "finalChoice"
-    ).textContent =
-      selectedFood;
-
-    document.getElementById(
-      "finalPayment"
-    ).textContent =
-      selectedPayment;
-
-  }
-
+  document.getElementById(
+    "finalPayment"
+  ).textContent =
+    selectedPayment || "—";
 
   document.getElementById(
     "finalMessage"
@@ -2099,13 +1816,22 @@ function finishInvitation(
     waitText;
 
 
+  /* ================================================
+     ПОКАЗЫВАЕМ ФИНАЛ
+  ================================================= */
+
   goToScreen(7);
 
-createHeartBurst();
+  createHeartBurst();
 
-createConfetti();
+  createConfetti();
 
-sendResultToTelegram();
+
+  /* ================================================
+     ОТПРАВКА В TELEGRAM
+  ================================================= */
+
+  await sendResultToTelegram();
 }
 
 
@@ -2163,11 +1889,7 @@ function createFallingHeart() {
     () => heart.remove(),
     8000
   );
-
 }
-
-
-/* Постоянный фон */
 
 setInterval(
   createFallingHeart,
@@ -2181,19 +1903,13 @@ setInterval(
 
 function createHeartBurst() {
 
-  for (
-    let i = 0;
-    i < 45;
-    i++
-  ) {
+  for (let i = 0; i < 45; i++) {
 
     setTimeout(
       createFallingHeart,
       i * 45
     );
-
   }
-
 }
 
 
@@ -2210,18 +1926,12 @@ function createConfetti() {
     "★"
   ];
 
-  for (
-    let i = 0;
-    i < 85;
-    i++
-  ) {
+  for (let i = 0; i < 85; i++) {
 
     setTimeout(() => {
 
       const piece =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       piece.className =
         "confetti";
@@ -2273,77 +1983,139 @@ function createConfetti() {
       );
 
     }, i * 18);
-
   }
-
 }
 
 
 /* =====================================================
-   ДАННЫЕ ПО УМОЛЧАНИЮ
+   ОТПРАВКА РЕЗУЛЬТАТА НА СЕРВЕР
 ===================================================== */
-
-let selectedChoice = "";
 
 async function sendResultToTelegram() {
 
-  const value = Number(waitSlider.value);
+  const value =
+    Number(waitSlider.value);
 
   let meetTime = "";
   let choice = "";
 
   if (selectedRoute === "Погулять") {
+
     meetTime = "20:00";
-    choice = "Парк аттракционов 🎢";
+
+    choice =
+      "Парк аттракционов 🎢";
+
   } else {
+
     meetTime = "21:00";
-    choice = selectedFood;
+
+    choice =
+      selectedFood || "—";
   }
+
+
+  const data = {
+
+    meetTime: meetTime,
+
+    choice: choice,
+
+    food:
+      selectedFood || "—",
+
+    payment:
+      selectedPayment || "—",
+
+    waitPercent: value
+  };
+
+
+  console.log(
+    "Отправляем данные:",
+    data
+  );
+
 
   try {
 
-    const response = await fetch("/api/send", {
-      method: "POST",
+    const response =
+      await fetch(
+        "/api/send",
+        {
+          method: "POST",
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
 
-      body: JSON.stringify({
-        meetTime: meetTime,
-        choice: choice,
-        food: selectedFood || "—",
-        payment: selectedPayment || "—",
-        waitPercent: value
-      })
-    });
+          body:
+            JSON.stringify(data)
+        }
+      );
 
-    const result = await response.json();
+
+    const text =
+      await response.text();
+
+
+    let result;
+
+    try {
+
+      result =
+        JSON.parse(text);
+
+    } catch {
+
+      console.error(
+        "Сервер вернул не JSON:",
+        text
+      );
+
+      return;
+    }
+
+
+    if (!response.ok) {
+
+      console.error(
+        "HTTP ошибка:",
+        response.status,
+        result
+      );
+
+      return;
+    }
+
 
     if (!result.ok) {
+
       console.error(
         "Ошибка отправки:",
         result.error
       );
-    } else {
-      console.log(
-        "❤️ Ответ успешно отправлен в Telegram"
-      );
+
+      return;
     }
+
+
+    console.log(
+      "❤️ Ответ успешно отправлен в Telegram"
+    );
+
 
   } catch (error) {
 
     console.error(
-      "Ошибка соединения:",
+      "Ошибка соединения с /api/send:",
       error
     );
-
   }
-
 }
+
 </script>
 
-
 </body>
-
 </html>
