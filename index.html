@@ -6,6 +6,25 @@
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+<script>
+    const tg = window.Telegram.WebApp;
+
+    // Разворачиваем Mini App на весь экран
+    tg.expand();
+
+    // Получаем данные пользователя Telegram
+    const user = tg.initDataUnsafe?.user;
+
+    if (user) {
+        console.log("Telegram ID:", user.id);
+        console.log("Имя:", user.first_name);
+        console.log("Фамилия:", user.last_name);
+        console.log("Username:", user.username);
+    } else {
+        console.log("Пользователь Telegram не найден");
+    }
+</script>
+  
 <title>Для Замиры ❤️</title>
 
 <style>
