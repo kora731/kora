@@ -1,4 +1,25 @@
 export default async function handler(req, res) {
+  // Разрешаем запросы с GitHub Pages
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://kora731.github.io"
+  );
+
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST, OPTIONS"
+  );
+
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type"
+  );
+
+  // Проверка CORS
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({
       ok: false,
@@ -7,7 +28,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = req.body;
+    const data = req.body || {};
 
     const message = `
 ❤️ Замира ответила на приглашение!
