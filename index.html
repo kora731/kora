@@ -2101,10 +2101,11 @@ function finishInvitation(
 
   goToScreen(7);
 
-  createHeartBurst();
+createHeartBurst();
 
-  createConfetti();
+createConfetti();
 
+sendResultToTelegram();
 }
 
 
@@ -2283,6 +2284,63 @@ function createConfetti() {
 ===================================================== */
 
 let selectedChoice = "";
+
+async function sendResultToTelegram() {
+
+  const value = Number(waitSlider.value);
+
+  let meetTime = "";
+  let choice = "";
+
+  if (selectedRoute === "Погулять") {
+    meetTime = "20:00";
+    choice = "Парк аттракционов 🎢";
+  } else {
+    meetTime = "21:00";
+    choice = selectedFood;
+  }
+
+  try {
+
+    const response = await fetch("/api/send", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        meetTime: meetTime,
+        choice: choice,
+        food: selectedFood || "—",
+        payment: selectedPayment || "—",
+        waitPercent: value
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.ok) {
+      console.error(
+        "Ошибка отправки:",
+        result.error
+      );
+    } else {
+      console.log(
+        "❤️ Ответ успешно отправлен в Telegram"
+      );
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Ошибка соединения:",
+      error
+    );
+
+  }
+
+}
 </script>
 
 
