@@ -7,17 +7,17 @@
 
     <title>Для Замиры ❤️</title>
 
+    <!-- Telegram Mini App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-        }
 
         body {
             font-family: Arial, sans-serif;
@@ -26,794 +26,838 @@
             overflow-x: hidden;
         }
 
+
         .screen {
             min-height: 100vh;
+
             display: none;
+
             align-items: center;
             justify-content: center;
-            padding: 25px 15px;
+
+            padding: 25px;
+
+            position: relative;
+            overflow: hidden;
 
             background:
-                radial-gradient(circle at top left, #182d79, transparent 45%),
-                radial-gradient(circle at bottom right, #720b35, transparent 45%),
+                radial-gradient(
+                    circle at top left,
+                    #182d79,
+                    transparent 45%
+                ),
+
+                radial-gradient(
+                    circle at bottom right,
+                    #720b35,
+                    transparent 45%
+                ),
+
                 #050b2e;
         }
 
+
         .screen.active {
             display: flex;
+            animation: appear 0.8s ease;
         }
+
 
         .card {
             width: 100%;
             max-width: 550px;
+
             padding: 45px 30px;
+
             text-align: center;
 
+            border-radius: 28px;
+
             background: rgba(10, 18, 65, 0.88);
-            border: 1px solid rgba(255, 82, 127, 0.5);
-            border-radius: 30px;
+
+            border: 1px solid rgba(255, 50, 100, 0.45);
 
             box-shadow:
-                0 0 40px rgba(255, 23, 68, 0.18),
-                0 20px 70px rgba(0, 0, 0, 0.45);
+                0 0 35px rgba(255, 20, 80, 0.25),
+                inset 0 0 30px rgba(20, 50, 150, 0.15);
 
-            backdrop-filter: blur(12px);
+            z-index: 2;
         }
+
 
         .label {
             color: #ff527f;
+
             font-size: 12px;
-            font-weight: bold;
+
             letter-spacing: 4px;
-            margin-bottom: 25px;
+
+            margin-bottom: 20px;
         }
 
-        .icon {
-            font-size: 75px;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
 
         h1 {
-            font-size: 38px;
-            margin: 10px 0 20px;
+            font-size: 42px;
+
+            margin-bottom: 22px;
+
+            text-shadow:
+                0 0 20px rgba(255, 40, 100, 0.5);
         }
+
 
         h2 {
             font-size: 30px;
-            margin: 10px 0 20px;
+
+            margin-bottom: 22px;
         }
+
 
         p {
-            color: #dce2ff;
             font-size: 17px;
+
             line-height: 1.7;
-            margin: 12px 0;
+
+            color: #d8ddff;
+
+            margin-bottom: 25px;
         }
 
-        .highlight {
-            color: #ff527f;
-            font-weight: bold;
+
+        .rose {
+            font-size: 75px;
+
+            display: block;
+
+            margin-bottom: 20px;
+
+            animation:
+                roseFloat 4s ease-in-out infinite;
         }
 
-        .info {
-            margin: 25px 0;
-            padding: 20px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 82, 127, 0.2);
-        }
-
-        .info div {
-            margin: 13px 0;
-            font-size: 17px;
-        }
 
         button {
-            width: 100%;
-            max-width: 330px;
-            margin-top: 25px;
-            padding: 16px 25px;
-
             border: none;
-            border-radius: 50px;
+
+            padding: 15px 30px;
+
+            border-radius: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff1744,
+                    #b0003a
+                );
 
             color: white;
-            font-size: 17px;
+
+            font-size: 16px;
+
             font-weight: bold;
 
             cursor: pointer;
 
-            background: linear-gradient(
-                135deg,
-                #ff1744,
-                #b0003a
-            );
-
             box-shadow:
-                0 10px 30px rgba(255, 23, 68, 0.3);
+                0 0 25px rgba(255, 23, 68, 0.4);
 
-            transition: 0.25s;
+            transition: 0.3s;
         }
+
 
         button:hover {
-            transform: translateY(-3px);
+            transform: scale(1.06);
+
             box-shadow:
-                0 15px 35px rgba(255, 23, 68, 0.45);
+                0 0 35px rgba(255, 23, 68, 0.7);
         }
+
 
         button:active {
             transform: scale(0.97);
         }
 
-        .question {
-            margin-top: 35px;
-            display: none;
+
+        .details {
+            margin: 25px 0;
         }
 
-        .question.show {
-            display: block;
-            animation: appear 0.5s ease;
-        }
 
-        .range-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
+        .detail {
+            margin: 15px 0;
 
-        .percent {
-            font-size: 42px;
-            font-weight: bold;
-            color: #ff527f;
-            margin: 10px 0 20px;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            cursor: pointer;
-            accent-color: #ff1744;
-        }
-
-        .pay-title {
-            margin-top: 35px;
-            font-size: 18px;
-        }
-
-        .pay-area {
-            position: relative;
-            width: 100%;
-            max-width: 430px;
-            height: 130px;
-            margin: 20px auto 0;
-        }
-
-        .pay-btn {
-            position: absolute;
-            width: 150px;
-            margin: 0;
-        }
-
-        #zamiraBtn {
-            left: 15px;
-            top: 45px;
-        }
-
-        #ramazanBtn {
-            right: 15px;
-            top: 45px;
-        }
-
-        .result {
-            margin-top: 25px;
             padding: 15px;
+
             border-radius: 15px;
-            background: rgba(255, 82, 127, 0.1);
-            color: #fff;
-            display: none;
+
+            background:
+                rgba(255, 30, 80, 0.08);
+
+            border:
+                1px solid rgba(255, 50, 100, 0.2);
+
+            font-size: 16px;
+
+            line-height: 1.6;
         }
 
-        .result.show {
-            display: block;
+
+        .detail strong {
+            color: #ff527f;
         }
 
-        .hearts {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
 
         .heart {
             position: absolute;
-            bottom: -50px;
-            font-size: 20px;
-            opacity: 0.5;
-            animation: heartUp linear infinite;
+
+            color: #ff1744;
+
+            font-size: 25px;
+
+            opacity: 0.6;
+
+            animation:
+                heartFloat 8s linear infinite;
         }
+
 
         .heart:nth-child(1) {
             left: 10%;
-            animation-duration: 8s;
+
+            animation-delay: 0s;
         }
+
 
         .heart:nth-child(2) {
             left: 30%;
-            animation-duration: 11s;
+
+            animation-delay: 2s;
         }
+
 
         .heart:nth-child(3) {
-            left: 55%;
-            animation-duration: 9s;
+            left: 65%;
+
+            animation-delay: 4s;
         }
+
 
         .heart:nth-child(4) {
-            left: 80%;
-            animation-duration: 12s;
+            left: 85%;
+
+            animation-delay: 1s;
         }
+
 
         .heart:nth-child(5) {
-            left: 92%;
-            animation-duration: 7s;
+            left: 50%;
+
+            animation-delay: 3s;
         }
 
-        .card {
-            position: relative;
-            z-index: 2;
-        }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
+        @keyframes heartFloat {
+
+            0% {
+                transform:
+                    translateY(110vh)
+                    rotate(0deg);
+
+                opacity: 0;
             }
+
+
+            20% {
+                opacity: 0.7;
+            }
+
+
+            80% {
+                opacity: 0.7;
+            }
+
+
+            100% {
+                transform:
+                    translateY(-15vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        @keyframes roseFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
 
             50% {
-                transform: translateY(-12px);
-            }
-        }
-
-        @keyframes heartUp {
-            from {
-                transform: translateY(0) rotate(0deg);
+                transform:
+                    translateY(-12px);
             }
 
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-            }
         }
+
 
         @keyframes appear {
+
             from {
                 opacity: 0;
-                transform: translateY(20px);
+
+                transform:
+                    translateY(30px);
             }
+
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
+
         }
 
+
         @media (max-width: 500px) {
+
+            h1 {
+                font-size: 34px;
+            }
+
+
+            h2 {
+                font-size: 25px;
+            }
+
 
             .card {
                 padding: 35px 20px;
             }
 
-            h1 {
-                font-size: 31px;
-            }
-
-            h2 {
-                font-size: 26px;
-            }
-
-            p {
-                font-size: 16px;
-            }
-
-            .pay-area {
-                height: 180px;
-            }
-
-            .pay-btn {
-                width: 140px;
-            }
-
-            #zamiraBtn {
-                left: 50%;
-                transform: translateX(-50%);
-                top: 15px;
-            }
-
-            #ramazanBtn {
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
-                top: 100px;
-            }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="hearts">
-    <div class="heart">❤️</div>
-    <div class="heart">💕</div>
-    <div class="heart">❤️</div>
-    <div class="heart">💗</div>
-    <div class="heart">❤️</div>
-</div>
+
+    <!-- ЭКРАН 1 -->
+
+    <section
+        class="screen active"
+        id="screen1"
+    >
+
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
 
 
-<!-- SCREEN 1 -->
+        <div class="card">
 
-<section class="screen active" id="screen1">
-
-    <div class="card">
-
-        <div class="icon">🌹</div>
-
-        <div class="label">
-            SPECIAL FOR YOU
-        </div>
-
-        <h1>
-            Для Замиры ❤️
-        </h1>
-
-        <p>
-            Я приготовил для тебя кое-что особенное...
-        </p>
-
-        <p>
-            Открой и посмотри ✨
-        </p>
-
-        <button onclick="nextScreen(2)">
-            Открыть ❤️
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- SCREEN 2 -->
-
-<section class="screen" id="screen2">
-
-    <div class="card">
-
-        <div class="icon">💌</div>
-
-        <div class="label">
-            ONLY FOR ZAMIRA
-        </div>
-
-        <h2>
-            Замира, есть кое-что особенное...
-        </h2>
-
-        <p>
-            Иногда самые простые моменты
-            становятся самыми приятными.
-        </p>
-
-        <p>
-            Поэтому я хочу провести
-            с тобой один замечательный вечер ❤️
-        </p>
-
-        <button onclick="nextScreen(3)">
-            Узнать больше 💕
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- SCREEN 3 -->
-
-<section class="screen" id="screen3">
-
-    <div class="card">
-
-        <div class="icon">🎳</div>
-
-        <div class="label">
-            OUR EVENING
-        </div>
-
-        <h2>
-            Наш вечер ❤️
-        </h2>
-
-        <div class="info">
-
-            <div>
-                📅 <b>26 сентября</b>
+            <div class="rose">
+                🌹
             </div>
 
-            <div>
-                ⏰ <b>18:00</b>
+
+            <div class="label">
+                SPECIAL FOR YOU
             </div>
 
-            <div>
-                📍 <b>Седьмой континент</b>
-            </div>
 
-            <div>
-                🎳 <b>Играть в боулинг</b>
-            </div>
+            <h1>
+                Для Замиры ❤️
+            </h1>
+
+
+            <p>
+                Я приготовил для тебя кое-что особенное...
+                <br>
+                Открой и посмотри ✨
+            </p>
+
+
+            <button
+                onclick="nextScreen(2)"
+            >
+                Открыть ❤️
+            </button>
 
         </div>
 
-        <button onclick="nextScreen(4)">
-            Продолжить ❤️
-        </button>
-
-    </div>
-
-</section>
+    </section>
 
 
-<!-- SCREEN 4 -->
 
-<section class="screen" id="screen4">
+    <!-- ЭКРАН 2 -->
 
-    <div class="card">
+    <section
+        class="screen"
+        id="screen2"
+    >
 
-        <div class="icon">✨</div>
-
-        <div class="label">
-            A LITTLE SURPRISE
-        </div>
-
-        <h2>
-            Но это ещё не всё...
-        </h2>
-
-        <p>
-            Самое главное — не место,
-            не время и даже не планы.
-        </p>
-
-        <p>
-            Главное — чтобы рядом была ты.
-            Именно этого мне хочется больше всего ❤️
-        </p>
-
-        <button onclick="nextScreen(5)">
-            Последний шаг 💖
-        </button>
-
-    </div>
-
-</section>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
 
 
-<!-- SCREEN 5 -->
+        <div class="card">
 
-<section class="screen" id="screen5">
-
-    <div class="card">
-
-        <div class="icon">🌹</div>
-
-        <div class="label">
-            FOR ZAMIRA
-        </div>
-
-        <h2>
-            Замира, пойдёшь со мной? ❤️
-        </h2>
-
-        <p>
-            26 сентября в 18:00 я хочу
-            провести этот вечер именно с тобой.
-        </p>
-
-        <p>
-            Боулинг, немного веселья
-            и много приятных воспоминаний 🎳❤️
-        </p>
-
-        <p>
-            Ты согласна? 🥹❤️
-        </p>
-
-        <button
-            id="acceptBtn"
-            onclick="acceptInvitation()">
-            Я согласна ❤️
-        </button>
-
-
-        <!-- ВОПРОСЫ ПОСЛЕ СОГЛАСИЯ -->
-
-        <div
-            id="finalChoice"
-            class="question">
-
-            <div class="range-title">
-                Насколько сильно ты ждёшь нашу встречу?
-            </div>
-
-            <div
-                id="percentValue"
-                class="percent">
-                50%
-            </div>
-
-            <input
-                id="waitingRange"
-                type="range"
-                min="0"
-                max="100"
-                value="50">
-
-
-            <div class="pay-title">
-                Кто платит? 💳
-            </div>
-
-            <div class="pay-area">
-
-                <button
-                    id="zamiraBtn"
-                    class="pay-btn"
-                    onclick="choosePayer('Замира')">
-                    Замира 😌
-                </button>
-
-                <button
-                    id="ramazanBtn"
-                    class="pay-btn"
-                    onclick="chooseRamazan()">
-                    Рамазан 😎
-                </button>
-
+            <div class="rose">
+                💌
             </div>
 
 
-            <div
-                id="paymentResult"
-                class="result">
+            <div class="label">
+                ONLY FOR ZAMIRA
             </div>
+
+
+            <h2>
+                Замира, есть кое-что особенное...
+            </h2>
+
+
+            <p>
+                Иногда самые простые моменты
+                становятся самыми запоминающимися.
+            </p>
+
+
+            <p>
+                Поэтому я хочу провести один
+                прекрасный вечер вместе с тобой ❤️
+            </p>
+
+
+            <button
+                onclick="nextScreen(3)"
+            >
+                Узнать больше 💕
+            </button>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
 
 
-<script>
+    <!-- ЭКРАН 3 -->
 
-/*
-    ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
-*/
+    <section
+        class="screen"
+        id="screen3"
+    >
 
-function nextScreen(number) {
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-            screen.classList.remove("active");
-        });
 
-    document
-        .getElementById("screen" + number)
-        .classList.add("active");
+        <div class="card">
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
+            <div class="rose">
+                🎳
+            </div>
 
 
-/*
-    НАЖАТИЕ "Я СОГЛАСНА"
-*/
+            <div class="label">
+                OUR EVENING
+            </div>
 
-function acceptInvitation() {
 
-    document
-        .getElementById("acceptBtn")
-        .style.display = "none";
+            <h2>
+                Наш вечер ❤️
+            </h2>
 
-    document
-        .getElementById("finalChoice")
-        .classList.add("show");
 
-    sendToTelegram(
-        "❤️ Замира нажала «Я согласна»!\n\n" +
-        "📅 26 сентября\n" +
-        "⏰ 18:00\n" +
-        "📍 Седьмой континент\n" +
-        "🎳 Боулинг"
-    );
-}
+            <p>
+                Замира, я приглашаю тебя
+                на наше маленькое свидание.
+            </p>
 
 
-/*
-    ПРОЦЕНТ ОЖИДАНИЯ
-*/
+            <div class="details">
 
-const waitingRange =
-    document.getElementById("waitingRange");
 
-const percentValue =
-    document.getElementById("percentValue");
+                <div class="detail">
 
+                    📅
+                    <strong>
+                        Дата
+                    </strong>
 
-waitingRange.addEventListener(
-    "input",
-    function () {
+                    <br>
 
-        percentValue.textContent =
-            this.value + "%";
+                    26 сентября
 
-    }
-);
+                </div>
 
 
-/*
-    УБЕГАЮЩАЯ КНОПКА "РАМАЗАН"
-*/
+                <div class="detail">
 
-let ramazanAttempts = 0;
+                    ⏰
+                    <strong>
+                        Время
+                    </strong>
 
+                    <br>
 
-function chooseRamazan() {
+                    18:00
 
-    const button =
-        document.getElementById("ramazanBtn");
+                </div>
 
-    const area =
-        document.querySelector(".pay-area");
 
-    ramazanAttempts++;
+                <div class="detail">
 
+                    📍
+                    <strong>
+                        Место
+                    </strong>
 
-    // Первые 5 раз убегает
+                    <br>
 
-    if (ramazanAttempts <= 5) {
+                    Седьмой континент
 
-        const maxX =
-            area.clientWidth - button.offsetWidth;
+                </div>
 
-        const maxY =
-            area.clientHeight - button.offsetHeight;
 
+                <div class="detail">
 
-        const x =
-            Math.random() * Math.max(0, maxX);
+                    🎳
+                    <strong>
+                        Что будем делать
+                    </strong>
 
-        const y =
-            Math.random() * Math.max(0, maxY);
+                    <br>
 
+                    Играть в боулинг
 
-        button.style.left = x + "px";
-        button.style.top = y + "px";
-        button.style.right = "auto";
-        button.style.transform = "none";
+                </div>
 
-        return;
-    }
 
+            </div>
 
-    // 6-й раз уже можно выбрать
 
-    choosePayer("Рамазан");
-}
+            <button
+                onclick="nextScreen(4)"
+            >
+                Продолжить ❤️
+            </button>
 
+        </div>
 
-/*
-    ВЫБОР КТО ПЛАТИТ
-*/
+    </section>
 
-function choosePayer(payer) {
 
-    const percent =
-        document.getElementById("waitingRange").value;
 
+    <!-- ЭКРАН 4 -->
 
-    const result =
-        document.getElementById("paymentResult");
+    <section
+        class="screen"
+        id="screen4"
+    >
 
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
 
-    result.innerHTML =
-        "💳 Платит: <b>" +
-        payer +
-        "</b> ❤️";
 
+        <div class="card">
 
-    result.classList.add("show");
+            <div class="rose">
+                ✨
+            </div>
 
 
-    /*
-        ОТПРАВЛЯЕМ ФИНАЛЬНЫЙ ОТВЕТ
-        В TELEGRAM
-    */
+            <div class="label">
+                A LITTLE SURPRISE
+            </div>
 
-    const message =
-        "❤️ Замира ответила!\n\n" +
 
-        "📊 Ждёт встречу: " +
-        percent +
-        "%\n" +
+            <h2>
+                Но это ещё не всё...
+            </h2>
 
-        "💳 Платит: " +
-        payer +
-        "\n\n" +
 
-        "📅 26 сентября\n" +
-        "⏰ 18:00\n" +
-        "📍 Седьмой континент\n" +
-        "🎳 Боулинг";
+            <p>
+                Самое главное — не место,
+                не время и даже не планы.
+            </p>
 
 
-    sendToTelegram(message);
+            <p>
+                Главное — чтобы рядом была ты.
+                Именно этого мне хочется больше всего ❤️
+            </p>
 
-}
 
+            <button
+                onclick="nextScreen(5)"
+            >
+                Последний шаг 💖
+            </button>
 
-/*
-    ОТПРАВКА НА VERCEL
-*/
+        </div>
 
-function sendToTelegram(message) {
+    </section>
 
-    fetch("/api/send", {
 
-        method: "POST",
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+    <!-- ЭКРАН 5 -->
 
-        body: JSON.stringify({
-            message: message
-        })
+    <section
+        class="screen"
+        id="screen5"
+    >
 
-    })
-    .then(response => response.json())
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">♥️</span>
 
-    .then(data => {
 
-        console.log(
-            "Telegram:",
-            data
-        );
+        <div class="card">
 
-        if (!data.success) {
+            <div class="rose">
+                🌹
+            </div>
 
-            console.error(
-                "Telegram error:",
-                data
+
+            <div class="label">
+                FOR ZAMIRA
+            </div>
+
+
+            <h2>
+                Замира, пойдёшь со мной? ❤️
+            </h2>
+
+
+            <p>
+                26 сентября в 18:00
+                я хочу провести этот вечер
+                именно с тобой.
+            </p>
+
+
+            <p>
+                Боулинг, немного веселья
+                и много приятных воспоминаний 🎳❤️
+            </p>
+
+
+            <p>
+                Ты согласна? 🥹❤️
+            </p>
+
+
+            <button
+                onclick="acceptInvitation()"
+            >
+                Я согласна ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <script>
+
+
+        /*
+            TELEGRAM MINI APP
+        */
+
+        const tg =
+            window.Telegram &&
+            window.Telegram.WebApp;
+
+
+        if (tg) {
+
+            tg.expand();
+
+        }
+
+
+
+        /*
+            ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
+        */
+
+        function nextScreen(number) {
+
+            document
+                .querySelectorAll(".screen")
+                .forEach(screen => {
+
+                    screen.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+            document
+                .getElementById(
+                    "screen" + number
+                )
+                .classList.add(
+                    "active"
+                );
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+
+
+
+        /*
+            НАЖАТИЕ "Я СОГЛАСНА"
+        */
+
+        function acceptInvitation() {
+
+
+            /*
+                Показываем сообщение
+            */
+
+            alert(
+                "Я очень рад ❤️ До встречи, Замира!"
+            );
+
+
+            /*
+                Сообщение для Telegram
+            */
+
+            const message =
+
+                "❤️ Замира согласилась!\n\n" +
+
+                "📅 26 сентября\n" +
+
+                "⏰ 18:00\n" +
+
+                "📍 Седьмой континент\n" +
+
+                "🎳 Боулинг";
+
+
+            /*
+                Отправляем сообщение
+                через Vercel
+            */
+
+            sendToTelegram(
+                message
             );
 
         }
 
-    })
 
-    .catch(error => {
 
-        console.error(
-            "Server error:",
-            error
-        );
+        /*
+            ОТПРАВКА В TELEGRAM
+        */
 
-    });
+        async function sendToTelegram(
+            message
+        ) {
 
-}
 
-</script>
+            try {
+
+
+                const response =
+                    await fetch(
+                        "/api/send",
+                        {
+
+                            method: "POST",
+
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+
+                            body:
+                                JSON.stringify({
+
+                                    message:
+                                        message
+
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Telegram:",
+                    data
+                );
+
+
+                if (!response.ok) {
+
+                    console.error(
+                        "Telegram error:",
+                        data
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Ошибка отправки:",
+                    error
+                );
+
+            }
+
+        }
+
+
+    </script>
+
 
 </body>
+
 </html>
