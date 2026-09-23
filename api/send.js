@@ -1,125 +1,47 @@
-export default async function handler(req, res) {
+const express = require("express");
 
-    // ===============================
-    // CORS
-    // ===============================
+const app = express();
 
-    res.setHeader(
-        "Access-Control-Allow-Origin",
-        "https://kora-sage-kappa.vercel.app"
-    );
-
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "POST, OPTIONS"
-    );
-
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type"
-    );
+const PORT = 3000;
 
 
-    // ===============================
-    // OPTIONS
-    // ===============================
+// ===============================
+// TELEGRAM
+// ===============================
 
-    if (req.method === "OPTIONS") {
-
-        return res.status(200).end();
-
-    }
+const BOT_TOKEN = "ТВОЙ_ТОКЕН";
+const CHAT_ID = "ТВОЙ_CHAT_ID";
 
 
-    // ===============================
-    // ТОЛЬКО POST
-    // ===============================
+// ===============================
+// SERVER
+// ===============================
 
-    if (req.method !== "POST") {
-
-        return res.status(405).json({
-
-            success: false,
-
-            error: "Method not allowed"
-
-        });
-
-    }
+app.use(express.json());
 
 
-    // ===============================
-    // ОСНОВНОЙ КОД
-    // ===============================
+// Показываем index.html
+app.use(express.static(__dirname));
+
+
+// ===============================
+// TELEGRAM API
+// ===============================
+
+app.post("/api/telegram", async (req, res) => {
 
     try {
 
-        const message = req.body?.message;
+        const message = req.body.message;
 
-
-        // Проверяем сообщение
-
-        if (!message) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                error: "Сообщение отсутствует"
-
-            });
-
-        }
-
-
-        // ===============================
-        // ENV VARIABLES
-        // ===============================
-
-        const BOT_TOKEN =
-            process.env.BOT_TOKEN;
-
-        const CHAT_ID =
-            process.env.CHAT_ID;
-
-
-        // Проверяем настройки
-
-        if (!BOT_TOKEN || !CHAT_ID) {
-
-            console.error(
-                "BOT_TOKEN или CHAT_ID отсутствует"
-            );
-
-            return res.status(500).json({
-
-                success: false,
-
-                error:
-                    "BOT_TOKEN или CHAT_ID не настроены"
-
-            });
-
-        }
-
-
-        // ===============================
-        // TELEGRAM API
-        // ===============================
 
         const response = await fetch(
-
             `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-
             {
-
                 method: "POST",
 
                 headers: {
-
-                    "Content-Type":
-                        "application/json"
-
+                    "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
@@ -129,9 +51,7 @@ export default async function handler(req, res) {
                     text: message
 
                 })
-
             }
-
         );
 
 
@@ -145,33 +65,17 @@ export default async function handler(req, res) {
         );
 
 
-        // ===============================
-        // ОШИБКА TELEGRAM
-        // ===============================
-
         if (!data.ok) {
 
             return res.status(500).json({
-
-                success: false,
-
-                error:
-                    data.description ||
-                    "Ошибка Telegram"
-
+                success: false
             });
 
         }
 
 
-        // ===============================
-        // УСПЕХ
-        // ===============================
-
-        return res.status(200).json({
-
+        res.json({
             success: true
-
         });
 
 
@@ -183,14 +87,29 @@ export default async function handler(req, res) {
         );
 
 
-        return res.status(500).json({
-
-            success: false,
-
-            error: error.message
-
+        res.status(500).json({
+            success: false
         });
 
     }
 
-}
+});
+
+
+// ===============================
+// START
+// ===============================
+
+app.listen(PORT, () => {
+
+    console.log("");
+    console.log("==============================");
+    console.log("❤️ САЙТ ЗАПУЩЕН");
+    console.log("==============================");
+    console.log(
+        `http://localhost:${PORT}`
+    );
+    console.log("==============================");
+    console.log("");
+
+});
