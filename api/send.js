@@ -1,47 +1,125 @@
-const express = require("express");
+export default async function handler(req, res) {
 
-const app = express();
+    // ===============================
+    // CORS
+    // ===============================
 
-const PORT = 3000;
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://kora-sage-kappa.vercel.app"
+    );
 
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "POST, OPTIONS"
+    );
 
-// ===============================
-// TELEGRAM
-// ===============================
-
-const BOT_TOKEN = "ТВОЙ_ТОКЕН";
-const CHAT_ID = "ТВОЙ_CHAT_ID";
-
-
-// ===============================
-// SERVER
-// ===============================
-
-app.use(express.json());
-
-
-// Показываем index.html
-app.use(express.static(__dirname));
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Content-Type"
+    );
 
 
-// ===============================
-// TELEGRAM API
-// ===============================
+    // ===============================
+    // OPTIONS
+    // ===============================
 
-app.post("/api/telegram", async (req, res) => {
+    if (req.method === "OPTIONS") {
+
+        return res.status(200).end();
+
+    }
+
+
+    // ===============================
+    // ТОЛЬКО POST
+    // ===============================
+
+    if (req.method !== "POST") {
+
+        return res.status(405).json({
+
+            success: false,
+
+            error: "Method not allowed"
+
+        });
+
+    }
+
+
+    // ===============================
+    // ОСНОВНОЙ КОД
+    // ===============================
 
     try {
 
-        const message = req.body.message;
+        const message = req.body?.message;
 
+
+        // Проверяем сообщение
+
+        if (!message) {
+
+            return res.status(400).json({
+
+                success: false,
+
+                error: "Сообщение отсутствует"
+
+            });
+
+        }
+
+
+        // ===============================
+        // ENV VARIABLES
+        // ===============================
+
+        const BOT_TOKEN =
+            process.env.BOT_TOKEN;
+
+        const CHAT_ID =
+            process.env.CHAT_ID;
+
+
+        // Проверяем настройки
+
+        if (!BOT_TOKEN || !CHAT_ID) {
+
+            console.error(
+                "BOT_TOKEN или CHAT_ID отсутствует"
+            );
+
+            return res.status(500).json({
+
+                success: false,
+
+                error:
+                    "BOT_TOKEN или CHAT_ID не настроены"
+
+            });
+
+        }
+
+
+        // ===============================
+        // TELEGRAM API
+        // ===============================
 
         const response = await fetch(
+
             `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+
             {
+
                 method: "POST",
 
                 headers: {
-                    "Content-Type": "application/json"
+
+                    "Content-Type":
+                        "application/json"
+
                 },
 
                 body: JSON.stringify({
@@ -51,7 +129,9 @@ app.post("/api/telegram", async (req, res) => {
                     text: message
 
                 })
+
             }
+
         );
 
 
@@ -65,17 +145,33 @@ app.post("/api/telegram", async (req, res) => {
         );
 
 
+        // ===============================
+        // ОШИБКА TELEGRAM
+        // ===============================
+
         if (!data.ok) {
 
             return res.status(500).json({
-                success: false
+
+                success: false,
+
+                error:
+                    data.description ||
+                    "Ошибка Telegram"
+
             });
 
         }
 
 
-        res.json({
+        // ===============================
+        // УСПЕХ
+        // ===============================
+
+        return res.status(200).json({
+
             success: true
+
         });
 
 
@@ -87,29 +183,14 @@ app.post("/api/telegram", async (req, res) => {
         );
 
 
-        res.status(500).json({
-            success: false
+        return res.status(500).json({
+
+            success: false,
+
+            error: error.message
+
         });
 
     }
 
-});
-
-
-// ===============================
-// START
-// ===============================
-
-app.listen(PORT, () => {
-
-    console.log("");
-    console.log("==============================");
-    console.log("❤️ САЙТ ЗАПУЩЕН");
-    console.log("==============================");
-    console.log(
-        `http://localhost:${PORT}`
-    );
-    console.log("==============================");
-    console.log("");
-
-});
+}
