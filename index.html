@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -294,6 +295,7 @@
         }
 
         @media (max-width: 500px) {
+
             .card {
                 padding: 35px 20px;
             }
@@ -346,6 +348,7 @@
 
 
 <!-- SCREEN 1 -->
+
 <section class="screen active" id="screen1">
 
     <div class="card">
@@ -378,6 +381,7 @@
 
 
 <!-- SCREEN 2 -->
+
 <section class="screen" id="screen2">
 
     <div class="card">
@@ -412,6 +416,7 @@
 
 
 <!-- SCREEN 3 -->
+
 <section class="screen" id="screen3">
 
     <div class="card">
@@ -456,6 +461,7 @@
 
 
 <!-- SCREEN 4 -->
+
 <section class="screen" id="screen4">
 
     <div class="card">
@@ -490,6 +496,7 @@
 
 
 <!-- SCREEN 5 -->
+
 <section class="screen" id="screen5">
 
     <div class="card">
@@ -586,222 +593,225 @@
 
 <script>
 
-    /*
-        ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
-    */
+/*
+    ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
+*/
 
-    function nextScreen(number) {
+function nextScreen(number) {
 
-        document
-            .querySelectorAll(".screen")
-            .forEach(screen => {
-                screen.classList.remove("active");
-            });
-
-        document
-            .getElementById("screen" + number)
-            .classList.add("active");
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
         });
-    }
+
+    document
+        .getElementById("screen" + number)
+        .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
 
-    /*
-        НАЖАТИЕ "Я СОГЛАСНА"
-    */
+/*
+    НАЖАТИЕ "Я СОГЛАСНА"
+*/
 
-    function acceptInvitation() {
+function acceptInvitation() {
 
-        document
-            .getElementById("acceptBtn")
-            .style.display = "none";
+    document
+        .getElementById("acceptBtn")
+        .style.display = "none";
 
-        document
-            .getElementById("finalChoice")
-            .classList.add("show");
+    document
+        .getElementById("finalChoice")
+        .classList.add("show");
 
-        sendToTelegram(
-            "❤️ Замира нажала «Я согласна»!\n\n" +
-            "📅 26 сентября\n" +
-            "⏰ 18:00\n" +
-            "📍 Седьмой континент\n" +
-            "🎳 Боулинг"
-        );
-    }
-
-
-    /*
-        ПРОЦЕНТ ОЖИДАНИЯ
-    */
-
-    const waitingRange =
-        document.getElementById("waitingRange");
-
-    const percentValue =
-        document.getElementById("percentValue");
-
-
-    waitingRange.addEventListener(
-        "input",
-        function () {
-
-            percentValue.textContent =
-                this.value + "%";
-
-        }
+    sendToTelegram(
+        "❤️ Замира нажала «Я согласна»!\n\n" +
+        "📅 26 сентября\n" +
+        "⏰ 18:00\n" +
+        "📍 Седьмой континент\n" +
+        "🎳 Боулинг"
     );
+}
 
 
-    /*
-        УБЕГАЮЩАЯ КНОПКА "РАМАЗАН"
-    */
+/*
+    ПРОЦЕНТ ОЖИДАНИЯ
+*/
 
-    let ramazanAttempts = 0;
+const waitingRange =
+    document.getElementById("waitingRange");
 
-
-    function chooseRamazan() {
-
-        const button =
-            document.getElementById("ramazanBtn");
-
-        const area =
-            document.querySelector(".pay-area");
-
-        ramazanAttempts++;
+const percentValue =
+    document.getElementById("percentValue");
 
 
-        // Первые 5 раз убегает
-        if (ramazanAttempts <= 5) {
+waitingRange.addEventListener(
+    "input",
+    function () {
 
-            const maxX =
-                area.clientWidth - button.offsetWidth;
+        percentValue.textContent =
+            this.value + "%";
 
-            const maxY =
-                area.clientHeight - button.offsetHeight;
-
-
-            const x =
-                Math.random() * Math.max(0, maxX);
-
-            const y =
-                Math.random() * Math.max(0, maxY);
+    }
+);
 
 
-            button.style.left = x + "px";
-            button.style.top = y + "px";
-            button.style.right = "auto";
-            button.style.transform = "none";
+/*
+    УБЕГАЮЩАЯ КНОПКА "РАМАЗАН"
+*/
 
-            return;
-        }
+let ramazanAttempts = 0;
 
 
-        // 6-й раз уже можно выбрать
-        choosePayer("Рамазан");
+function chooseRamazan() {
+
+    const button =
+        document.getElementById("ramazanBtn");
+
+    const area =
+        document.querySelector(".pay-area");
+
+    ramazanAttempts++;
+
+
+    // Первые 5 раз убегает
+
+    if (ramazanAttempts <= 5) {
+
+        const maxX =
+            area.clientWidth - button.offsetWidth;
+
+        const maxY =
+            area.clientHeight - button.offsetHeight;
+
+
+        const x =
+            Math.random() * Math.max(0, maxX);
+
+        const y =
+            Math.random() * Math.max(0, maxY);
+
+
+        button.style.left = x + "px";
+        button.style.top = y + "px";
+        button.style.right = "auto";
+        button.style.transform = "none";
+
+        return;
     }
 
 
-    /*
-        ВЫБОР КТО ПЛАТИТ
-    */
+    // 6-й раз уже можно выбрать
 
-    function choosePayer(payer) {
-
-        const percent =
-            document.getElementById("waitingRange").value;
+    choosePayer("Рамазан");
+}
 
 
-        const result =
-            document.getElementById("paymentResult");
+/*
+    ВЫБОР КТО ПЛАТИТ
+*/
+
+function choosePayer(payer) {
+
+    const percent =
+        document.getElementById("waitingRange").value;
 
 
-        result.innerHTML =
-            "💳 Платит: <b>" +
-            payer +
-            "</b> ❤️";
+    const result =
+        document.getElementById("paymentResult");
 
 
-        result.classList.add("show");
+    result.innerHTML =
+        "💳 Платит: <b>" +
+        payer +
+        "</b> ❤️";
 
 
-        /*
-            ОТПРАВЛЯЕМ ФИНАЛЬНЫЙ ОТВЕТ
-            В TELEGRAM
-        */
-
-        const message =
-            "❤️ Замира ответила!\n\n" +
-
-            "📊 Ждёт встречу: " +
-            percent +
-            "%\n" +
-
-            "💳 Платит: " +
-            payer +
-            "\n\n" +
-
-            "📅 26 сентября\n" +
-            "⏰ 18:00\n" +
-            "📍 Седьмой континент\n" +
-            "🎳 Боулинг";
-
-
-        sendToTelegram(message);
-
-    }
+    result.classList.add("show");
 
 
     /*
-        ОТПРАВКА НА СЕРВЕР
+        ОТПРАВЛЯЕМ ФИНАЛЬНЫЙ ОТВЕТ
+        В TELEGRAM
     */
 
-    function sendToTelegram(message) {
+    const message =
+        "❤️ Замира ответила!\n\n" +
 
-        fetch("/api/telegram", {
+        "📊 Ждёт встречу: " +
+        percent +
+        "%\n" +
 
-            method: "POST",
+        "💳 Платит: " +
+        payer +
+        "\n\n" +
 
-            headers: {
-                "Content-Type":
-                    "application/json"
-            },
+        "📅 26 сентября\n" +
+        "⏰ 18:00\n" +
+        "📍 Седьмой континент\n" +
+        "🎳 Боулинг";
 
-            body: JSON.stringify({
-                message: message
-            })
 
+    sendToTelegram(message);
+
+}
+
+
+/*
+    ОТПРАВКА НА VERCEL
+*/
+
+function sendToTelegram(message) {
+
+    fetch("/api/send", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            message: message
         })
 
-        .then(response =>
-            response.json()
-        )
+    })
+    .then(response => response.json())
 
-        .then(data => {
+    .then(data => {
 
-            if (!data.success) {
+        console.log(
+            "Telegram:",
+            data
+        );
 
-                console.error(
-                    "Telegram error:",
-                    data
-                );
-
-            }
-
-        })
-
-        .catch(error => {
+        if (!data.success) {
 
             console.error(
-                "Server error:",
-                error
+                "Telegram error:",
+                data
             );
 
-        });
+        }
 
-    }
+    })
+
+    .catch(error => {
+
+        console.error(
+            "Server error:",
+            error
+        );
+
+    });
+
+}
 
 </script>
 
